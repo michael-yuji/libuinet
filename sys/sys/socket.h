@@ -175,7 +175,7 @@ struct accept_filter_arg {
 #endif
 #define	AF_UNIX		1		/* standardized name for AF_LOCAL */
 #define	AF_INET		2		/* internetwork: UDP, TCP, etc. */
-#if __BSD_VISIBLE
+#if __BSD_VISIBLE || defined(__APPLE__)
 #define	AF_IMPLINK	3		/* arpanet imp addresses */
 #define	AF_PUP		4		/* pup protocols: e.g. BSP */
 #define	AF_CHAOS	5		/* mit CHAOS protocols */
@@ -200,11 +200,17 @@ struct accept_filter_arg {
 #define	AF_IPX		23		/* Novell Internet Protocol */
 #define	AF_SIP		24		/* Simple Internet Protocol */
 #define	pseudo_AF_PIP	25		/* Help Identify PIP packets */
+#endif /* __APPLE__ */
+#if __BSD_VISIBLE
 #define	AF_ISDN		26		/* Integrated Services Digital Network*/
 #define	AF_E164		AF_ISDN		/* CCITT E.164 recommendation */
 #define	pseudo_AF_KEY	27		/* Internal key-management function */
 #endif
-#define	AF_INET6	28		/* IPv6 */
+#if defined(__APPLE__)
+#define	AF_INET6	30		/* IPv6 */
+#else
+#define AF_INET6    28      /* IPv6 */
+#endif /* __APPLE__ */
 #if __BSD_VISIBLE
 #define	AF_NATM		29		/* native ATM access */
 #define	AF_ATM		30		/* ATM */

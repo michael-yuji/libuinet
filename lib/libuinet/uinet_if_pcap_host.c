@@ -372,8 +372,10 @@ pcap_setup_dump(pcap_t *p, int linktype, FILE *f, const char *fname)
 	return ((pcap_dumper_t *)f);
 }
 #endif /* !defined(__linux) */
-
-static pcap_dumper_t *
+#if !defined(__APPLE__)
+static 
+#endif
+pcap_dumper_t *
 pcap_dump_open_append(pcap_t *p, const char *fname)
 {
 #if defined(__linux)

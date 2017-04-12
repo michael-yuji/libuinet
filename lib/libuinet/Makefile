@@ -83,6 +83,10 @@ ifneq (${HOST_OS},Darwin)
 CFLAGS+= -DHAS_NATIVE_TLS
 endif
 
+ifeq (${HOST_OS},Darwin)
+CFLAGS+= -DUSING_MACHO
+endif
+
 VPATH+= $S/${MACHINE_CPUARCH}/${MACHINE_CPUARCH}
 VPATH+= $S/kern
 VPATH+= $S/crypto

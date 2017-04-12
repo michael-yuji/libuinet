@@ -98,7 +98,11 @@ struct vnet {
  * These two virtual network stack allocator definitions are also required
  * for libkvm so that it can evaluate virtualized global variables.
  */
+#ifdef USING_MACHO
+#define VNET_SETNAME        "__DATA,__set_vnet"
+#else
 #define	VNET_SETNAME		"set_vnet"
+#endif /* USING_MACHO */
 #define	VNET_SYMPREFIX		"vnet_entry_"
 #endif
 

@@ -62,7 +62,7 @@
 #endif
 
 #include <net/ethernet.h>
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__APPLE__)
 #include <net/if.h>
 #include <net/if_dl.h>
 #endif /*  __FreeBSD__ */
@@ -1098,7 +1098,7 @@ uhi_get_ifaddr(const char *ifname, uint8_t *ethaddr)
 		return (-1);
 	}
 
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__APPLE__)
 	af = AF_LINK;
 #elif defined(__linux__)			
 	af = AF_PACKET;
@@ -1114,7 +1114,7 @@ uhi_get_ifaddr(const char *ifname, uint8_t *ethaddr)
 		    (NULL != ifa_current->ifa_data)) {
 			unsigned char *addr;
 
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__APPLE__)
 			struct sockaddr_dl *sdl = (struct sockaddr_dl *)ifa_current->ifa_addr;
 			addr = &sdl->sdl_data[sdl->sdl_nlen];
 #elif defined(__linux__)			

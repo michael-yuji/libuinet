@@ -288,6 +288,9 @@
 #endif
 
 #if __GNUC_PREREQ__(3, 3)
+#ifdef __nonnull
+#undef __nonnull
+#endif /* nonnull */
 #define __nonnull(x)	__attribute__((__nonnull__(x)))
 #else
 #define __nonnull(x)
